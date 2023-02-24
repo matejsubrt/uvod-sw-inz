@@ -1,14 +1,36 @@
-# Student information system - [*module title*]
+# Student information system - Module Enrollments
 
 [*Module description*]
 
 ## Functional Requirements
 
-This section specifies the functional requirements.
+Course Enrollment Management: The module should enable students to enroll in courses for a given semester and schedule. It should also ensure that a student cannot enroll in a course unless they have completed its prerequisites successfully. Additionally, it should allow a student to enroll in a course with a filled capacity by adding them to the waiting list.
+
+Repeated Enrollments: The module should allow students to enroll in a course they have previously completed if the course is explicitly specified as allowing repeated enrollments.
+
+Student List Management: The module should allow course guarantors and teachers to view the list of students enrolled in a particular course for a given semester and schedule. They should also be able to reallocate students between schedule sheets defined in the schedule for the given semester.
+
+Email Communication: The module should allow course guarantors and teachers to send email messages to students enrolled in a particular course for a given semester and schedule.
+
+Statistical Reports: The module should enable the creation of statistical reports on the number of students enrolled in subjects and timetables in individual semesters. Additionally, it should provide data on the teaching shares of teachers.
 
 ### User requirements
 
-[*List of user requirements*]
+#### Students: ####
+* View available courses and their prerequisite courses.
+* Restrict course enrollment based on the requirements.
+* Enroll in courses for a given semester and schedule.
+* View their enrollment status.
+* See waiting list of a course with filled capacity.
+* Receive email notifications from course guarantors and teachers regarding the courses they are enrolled in.
+
+#### Course Guarantors and Teachers: ####
+* View list of students enrolled in their courses for a given semester and schedule.
+* Send email messages to students enrolled in their course.
+* Reallocate students between schedule sheets defined in the schedule for the given semester.
+
+#### System: ####
+* Create statistical reports on the number of students enrolled in subjects and timetables in individual semesters and on the teaching shares of teachers.
 
 ### System requirements
 
