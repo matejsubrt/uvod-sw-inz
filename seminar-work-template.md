@@ -1,10 +1,15 @@
-# Student information system - [*module title*]
+# Student information system - Enrollments
 
-[*Module description*]
+The module Enrollments enables to manage enrollments of students in courses in semesters and enrollments in specific schedule tickets in a given semester according to the planned schedule
 
 ## Functional Requirements
 
-This section specifies the functional requirements.
+- A student needs to be able to enroll to a certain course, to have his studies registered.
+- A student needs to be able to choose a certain schedule ticket of a course while enrolling, to be able to choose a time and teacher that suits him.
+- A student needs to be able to enter himself to a waiting list of a schedule ticket, if said ticket is already full, so that he doesn't have to check all the time, whether a space has freed up.
+- A student needs to be able to see all the prerequisities of a subject, so that he can plan his studies accordingly.
+- A student needs to be able to see, whether he has already completed a certain subject, so that he can know, what subjects he has left.
+- A student needs to see, whether a subject can be enrolled to repeatedly, so that he can plan his studies accordingly. 
 
 ### User requirements
 
