@@ -17,20 +17,34 @@ Statistical Reports: The module should enable the creation of statistical report
 ### User requirements
 
 #### Students: ####
-* View available courses and their prerequisite courses, so that he can plan his studies accordingly.
+* View available courses and their prerequisite courses.
+  - So that he can plan his studies accordingly.
 * Restrict course enrollment based on the requirements.
+  - Ensures students have necessary knowledge.
 * Enroll in courses for a given semester and schedule.
+  - Allows students to plan study schedules.
 * View their enrollment status.
-* See waiting list of a course with filled capacity.
-* Can add themselves to a waiting list for a scheduled ticket that is already full, so that he doesn't have to check whether a space has freed up.
+  - Helps students track course enrollments.
+* Can add themselves to a waiting list for a scheduled ticket that is already full.
+  - So that he doesn't have to check whether a space has freed up.
 * Receive email notifications from course guarantors and teachers regarding the courses they are enrolled in.
-* See whether a subject can be enrolled to repeatedly, so he can plan his studies accordingly.
-* See whether he has already completed a certain subject, so that he can know, what subjects he has left.
+  - It is important for students to stay informed about changes that may affect their enrollment status or course schedules.
+* See whether a subject can be enrolled to repeatedly.
+  - So he can plan his studies accordingly.
+* See whether he has already completed a certain subject.
+  - So that he can know, what subjects he has left.
 
 #### Course Guarantors and Teachers: ####
 * View list of students enrolled in their courses for a given semester and schedule.
+  - For better communication with students
 * Send email messages to students enrolled in their course.
+  - This is important for teachers to communicate with their students and provide them with timely feedback and support.
 * Reallocate students between schedule sheets defined in the schedule for the given semester.
+  - Helps teachers adjust the course schedule and ensure that all students have an equal opportunity to participate in the course.
+* Modify course details, such as prerequisites and allowed repeated enrollments.
+  - To adjust course requirements to meet evolving teaching materials and student needs
+* Review and grade student assignments and exams.
+  - It is important for providing students with feedback on their work.
 
 #### System: ####
 * Create statistical reports on the number of students enrolled in subjects and timetables in individual semesters and on the teaching shares of teachers.
