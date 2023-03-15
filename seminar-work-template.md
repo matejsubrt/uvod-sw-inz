@@ -1,19 +1,39 @@
-# Student information system - Enrollments
+# Student information system - Module Enrollments
 
 The module Enrollments enables to manage enrollments of students in courses in semesters and enrollments in specific schedule tickets in a given semester according to the planned schedule
 
 ## Functional Requirements
 
-- A student needs to be able to enroll to a certain course, to have his studies registered.
-- A student needs to be able to choose a certain schedule ticket of a course while enrolling, to be able to choose a time and teacher that suits him.
-- A student needs to be able to enter himself to a waiting list of a schedule ticket, if said ticket is already full, so that he doesn't have to check all the time, whether a space has freed up.
-- A student needs to be able to see all the prerequisities of a subject, so that he can plan his studies accordingly.
-- A student needs to be able to see, whether he has already completed a certain subject, so that he can know, what subjects he has left.
-- A student needs to see, whether a subject can be enrolled to repeatedly, so that he can plan his studies accordingly. 
+Course Enrollment Management: The module should enable students to enroll in courses for a given semester and schedule. It should also ensure that a student cannot enroll in a course unless they have completed its prerequisites successfully. Additionally, it should allow a student to enroll in a course with a filled capacity by adding them to the waiting list.
+
+Repeated Enrollments: The module should allow students to enroll in a course they have previously completed if the course is explicitly specified as allowing repeated enrollments.
+
+Student List Management: The module should allow course guarantors and teachers to view the list of students enrolled in a particular course for a given semester and schedule. They should also be able to reallocate students between schedule sheets defined in the schedule for the given semester.
+
+Email Communication: The module should allow course guarantors and teachers to send email messages to students enrolled in a particular course for a given semester and schedule.
+
+Statistical Reports: The module should enable the creation of statistical reports on the number of students enrolled in subjects and timetables in individual semesters. Additionally, it should provide data on the teaching shares of teachers.
 
 ### User requirements
 
-[*List of user requirements*]
+#### Students: ####
+* View available courses and their prerequisite courses, so that he can plan his studies accordingly.
+* Restrict course enrollment based on the requirements.
+* Enroll in courses for a given semester and schedule.
+* View their enrollment status.
+* See waiting list of a course with filled capacity.
+* Can add themselves to a waiting list for a scheduled ticket that is already full, so that he doesn't have to check whether a space has freed up.
+* Receive email notifications from course guarantors and teachers regarding the courses they are enrolled in.
+* See whether a subject can be enrolled to repeatedly, so he can plan his studies accordingly.
+* See whether he has already completed a certain subject, so that he can know, what subjects he has left.
+
+#### Course Guarantors and Teachers: ####
+* View list of students enrolled in their courses for a given semester and schedule.
+* Send email messages to students enrolled in their course.
+* Reallocate students between schedule sheets defined in the schedule for the given semester.
+
+#### System: ####
+* Create statistical reports on the number of students enrolled in subjects and timetables in individual semesters and on the teaching shares of teachers.
 
 ### System requirements
 
