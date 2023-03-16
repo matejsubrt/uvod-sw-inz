@@ -21,18 +21,24 @@ Statistical Reports: The module should enable the creation of statistical report
   - So that he can plan his studies accordingly.
 * Restrict course enrollment based on the requirements.
   - Ensures students have necessary knowledge.
-* Enroll in courses for a given semester and schedule.
+* Enroll in courses for a given semester and schedule, or discard the enrollment.
   - Allows students to plan study schedules.
 * View their enrollment status.
   - Helps students track course enrollments.
-* Can add themselves to a waiting list for a scheduled ticket that is already full.
+* Can add/remove themselves to/from a waiting list for a scheduled ticket that is already full.
   - So that he doesn't have to check whether a space has freed up.
 * Receive email notifications from course guarantors and teachers regarding the courses they are enrolled in.
   - It is important for students to stay informed about changes that may affect their enrollment status or course schedules.
 * See whether a subject can be enrolled to repeatedly.
-  - So he can plan his studies accordingly.
-* See whether he has already completed a certain subject.
-  - So that he can know, what subjects he has left.
+  - So they can plan their studies accordingly.
+* See whether they have already completed a certain subject.
+  - So that they can know, what subjects they have left.
+* Filter the view of available courses according factors like name, students requirement, faculty.
+  - Students will be able to find their wanted course easier and in shorter time.
+* See the schedule of courses of current semester during the enrollment.
+  - Students can easily decide which schedule ticket is the best for them.
+* Can verify their current schedule if it has time conflicts.
+  - Students can prevent unpleasant ascertainment early.
 
 #### Course Guarantors and Teachers: ####
 * View list of students enrolled in their courses for a given semester and schedule.
