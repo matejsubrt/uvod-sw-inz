@@ -52,58 +52,128 @@ Statistical Reports: The module should enable the creation of statistical report
 * Review and grade student assignments and exams.
   - It is important for providing students with feedback on their work.
 
-#### System: ####
+#### Management: ####
 * Create statistical reports on the number of students enrolled in subjects and timetables in individual semesters and on the teaching shares of teachers.
 
 ### System requirements
 
-[*Document here your system requirements as use case diagrams.*]
-
 #### Actors
 
-[*Document here all actors from the use case diagrams. Make a subsection for each actor and their short description in each subsection.*]
+##### Student
+A person who enrolls in courses for a given semester and schedule.
 
-##### [*Actor name*]
+##### Course Guarantor/Teacher
+A person who manages the courses, the enrollments, and the communication with the students.
 
-[*Actor description*]
+##### Management
+A person who creates statistical reports.
 
 #### Use cases
 
-[*Document here all use cases. Create a subsection for each use case diagram. If you have only one use case diagram, you do not need a special subsection*]
+Student Enrolls in Course
+1. Student selects a course from the available courses list.
+2. The system displays the prerequisites required for the selected course.
+3. If the student has completed the prerequisites, they can enroll in the course.
+4. If the course has a filled capacity, the student can choose to add themselves to the waiting list.
+5. The system updates the enrollment status of the student.
 
-##### [*Use case diagram title*]
+Student Removes Enrollment in Course
+1. Student selects a course from their enrolled courses list.
+2. The system displays the details of the selected course.
+3. The student can choose to remove their enrollment in the course.
+4. The system updates the enrollment status of the student.
 
-[*Use case diagram in PlantUML*]
+Student Views Available Courses and Prerequisites
+1. Student accesses the list of available courses.
+2. The system displays the available courses along with their prerequisites.
+
+Student Views Enrollment Status
+1. Student accesses their enrollment status.
+2. The system displays the courses the student is currently enrolled in.
+
+Student Views Repeated Enrollment Status for a Course
+1. Student accesses the list of available courses.
+2. The system displays whether the student is allowed to enroll in a course they have previously completed.
+
+Course Guarantor/Teacher Views List of Enrolled Students
+1. Course guarantor/teacher selects a course for a given semester and schedule.
+2. The system displays the list of students enrolled in the selected course.
+
+Course Guarantor/Teacher Sends Email Messages to Students
+1. Course guarantor/teacher selects a course for a given semester and schedule.
+2. The system displays the list of students enrolled in the selected course.
+3. The course guarantor/teacher writes an email message and sends it to the selected students.
+
+Course Guarantor/Teacher Modifies Course Details
+1. Course guarantor/teacher selects a course for a given semester and schedule.
+2. The system displays the details of the selected course.
+3. The course guarantor/teacher modifies the course details, such as prerequisites and allowed repeated enrollments.
+4. The system updates the course details.
+
+Course Guarantor/Teacher Reviews and Grades Student Assignments and Exams
+1. Course guarantor/teacher selects a course for a given semester and schedule.
+2. The system displays the list of students enrolled in the selected course.
+3. The course guarantor/teacher selects a student and their assignment or exam to review.
+4. The system displays the selected student's work.
+5. The course guarantor/teacher provides a grade and feedback for the student's work.
+6. The system updates the grade for the selected student's work.
+
+Management Creates Statistical Reports on Enrollments
+1. Management selects a semester to generate a statistical report.
+2. The system generates a statistical report on the number of students enrolled in subjects and timetables for the selected semester.
+
+##### Use case diagram
 
 ```plantuml
 @startuml
 left to right direction
-actor Guest as g
-package Professional {
-  actor Chef as c
-  actor "Food Critic" as fc
+
+actor Student as S
+actor "Course Guarantor/Teacher" as T
+actor Management as M
+
+package "Student Use Cases" {
+  usecase "Enrolls in Course" as UC1
+  usecase "Removes Enrollment in Course" as UC2
+  usecase "Views Available Courses and Prerequisites" as UC3
+  usecase "Views Enrollment Status" as UC4
+  usecase "Views Repeated Enrollment Status for a Course" as UC5
 }
-package Restaurant {
-  usecase "Eat Food" as UC1
-  usecase "Pay for Food" as UC2
-  usecase "Drink" as UC3
-  usecase "Review" as UC4
-  usecase "Cook Food" as UC5
+
+package "Course Guarantor/Teacher Use Cases" {
+  usecase "Views List of Enrolled Students" as UC6
+  usecase "Sends Email Messages to Students" as UC7
+  usecase "Modifies Course Details" as UC8
+  usecase "Reviews and Grades Student Assignments and Exams" as UC9
 }
-c --> UC5
-fc --> UC4
-g --> UC1
-g --> UC2
-g --> UC3
+
+package "Management Use Cases" {
+  usecase "Creates Statistical Reports on Enrollments" as UC10
+  usecase "Creates Statistical Reports on Teaching Shares" as UC11
+}
+
+S --> UC1
+S --> UC2
+S --> UC3
+S --> UC4
+S --> UC5
+
+T --> UC6
+T --> UC7
+T --> UC8
+T --> UC9
+
+M --> UC10
+M --> UC11
+
+UC1 <.. UC3 : <<include>>
+UC2 <.. UC3 : <<include>>
+
+UC1 <.. UC4 : <<extend>>
+UC2 <.. UC4 : <<extend>>
+
 @enduml
 ```
-
-To be able to embed PlantUML diagrams to Markdown code with previews in VSCode you need
-* Markdown All in One extension
-* PlantUML extension
-* Mardown Plantuml Preview extension
-
-Follow https://plantuml.com/
 
 [*Describe the diagram in a short paragraph. Describe each use case from the diagram in the detail from the lecture in a separate subsection.*]
 
