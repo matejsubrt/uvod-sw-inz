@@ -185,8 +185,6 @@ UC2 <.. UC4 : <<extend>>
 
 ## Information model
 
-[*Express the information model of the domain as a UML class diagram in PlantUML. Do not use class methods in the diagram, only classes, class attributes and associations connecting classes.*]
-
 
 ```plantuml
 @startuml
@@ -266,8 +264,6 @@ Schedule "1...n" -- "1...n" TimeSlot : has >
 
 ```
 
-
-[*Document each class with a short description in a separate subsection*]
 
 #### Class: Student
 Represents a student in the system. The student class can have attributes such as name, ID, contact information, and enrollment status.
