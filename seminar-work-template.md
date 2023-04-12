@@ -261,7 +261,7 @@ Teacher "1...n" -- "0...n" Course : teaches >
 Management "1...n" -- "0...n" Course : manages >
 Schedule "1" -- "0...n" Enrollment : includes >
 Course "1" -- "1" WaitingList : has >
-Schedule "1...n" -- "1...n" TimeSlot :  >
+Schedule "1...n" -- "1...n" TimeSlot : has >
 @enduml
 
 ```
