@@ -183,6 +183,69 @@ UC2 <.. UC4 : <<extend>>
 
 [*Add an activity diagram for one use case per a team member*]
 
+###### Course enrollment
+
+
+Actors:
+- Student
+- System
+
+Preconditions:
+- The student is logged into the system.
+- The enrollment period is open.
+
+Postconditions:
+- The student is enrolled in the course if the requirements are met, and the schedule ticket is not full.
+- The student is added to the waiting list if the schedule ticket is full.
+
+Flow of Events:
+
+1. The student views available courses and their prerequisites.
+   1.1 The system displays courses and prerequisites.
+2. The student checks if the course requirements are met.
+   2.1 The system checks if the requirements are met.
+3. If the requirements are met, the student enrolls in the course for a given semester and schedule.
+   3.1 The system checks if the schedule ticket is full.
+      3.1.1 If the schedule ticket is full, the student adds themselves to the waiting list.
+      3.1.2 If the schedule ticket is not full, the system confirms enrollment.
+4. If the requirements are not met, the system informs the student that they cannot enroll in the course.
+5. The student views their enrollment status.
+   5. system displays the enrollment status.
+
+```plantuml
+@startuml
+|Student|
+start
+
+:View available courses and prerequisites;
+|System|
+:Display courses and prerequisites;
+|Student|
+:Choose course to enroll in;
+|System|
+if (Requirements met?) then (yes)
+  |System|
+  :Enroll in course for a given semester and schedule;
+  |System|
+  if (Schedule ticket full?) then (yes)
+    |System|
+    :Add to waiting list;
+  else (no)
+    :Enroll;
+  endif
+else (no)
+  :Cannot enroll in course;
+endif
+
+|System|
+:Display enrollment status;
+|Student|
+:View enrollment status;
+|Student|
+stop
+@enduml
+```
+
 ## Information model
 
 [*Express the information model of the domain as a UML class diagram in PlantUML. Do not use class methods in the diagram, only classes, class attributes and associations connecting classes.*]
