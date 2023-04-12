@@ -187,16 +187,82 @@ UC2 <.. UC4 : <<extend>>
 
 [*Express the information model of the domain as a UML class diagram in PlantUML. Do not use class methods in the diagram, only classes, class attributes and associations connecting classes.*]
 
+
 ```plantuml
 @startuml
-class Car
+class Student {
+    -id: int
+    -name: string
+    -email: string
+}
 
-Driver - Car : drives >
-Car *- Wheel : have 4 >
-Car -- Person : < owns
+class Course {
+    -id: int
+    -name: string
+    -allowRepeatedEnrollment: bool
+}
+
+class Schedule {
+    -id: int
+    -semester: string
+}
+
+class TimeSlot {
+  - startTime: DateTime
+  - endTime: DateTime
+  - dayOfWeek: DayOfWeek
+}
+
+enum DayOfWeek {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
+
+class Enrollment {
+    -id: int
+    -schedule: Schedule
+    -status: string
+}
+
+class WaitingList {
+    -id: int
+    -students: Queue<Student>
+}
+
+class CourseGuarantor {
+    -id: int
+    -name: string
+    -email: string
+}
+
+class Teacher {
+    -id: int
+    -name: string
+    -email: string
+}
+
+class Management {
+    -id: int
+    -name: string
+}
+
+Student "1" -- "0...n" Enrollment : enrolls in >
+Student "0...n" -- "0...n" WaitingList : is in >
+Course "1" -- "0...n" Schedule : is offered in >
+CourseGuarantor "1" -- "0...n" Course : guarantees >
+Teacher "1...n" -- "0...n" Course : teaches >
+Management "1...n" -- "0...n" Course : manages >
+Schedule "1" -- "0...n" Enrollment : includes >
+Course "1" -- "1" WaitingList : has >
+Schedule "0...n" -- "1...n" TimeSlot :  >
 @enduml
-```
 
+```
 [*Document each class with a short description in a separate subsection*]
 
 ### [*Class name*]
