@@ -269,32 +269,32 @@ Schedule "1...n" -- "1...n" TimeSlot :  >
 
 [*Document each class with a short description in a separate subsection*]
 
-####Class: Student
+###Class: Student
 Represents a student in the system. The student class can have attributes such as name, ID, contact information, and enrollment status.
 
-####Class: Course
+###Class: Course
 Represents a course offered in the system. Its number of credits can vary during different semesters.
 
-####Class: Schedule
+###Class: Schedule
 Represents a schedule of courses offered in a particular semester. 
 
-####Class: TimeSlot
+###Class: TimeSlot
 Represents a time slot for a particular course. The time slot class can have attributes such as start time, end time, day of the week, and location. 
 
 ####Enum: DayOfWeek
 Represents a day of the week. The DayOfWeek enum can have values such as Monday, Tuesday, Wednesday, etc. It may be used in conjunction with the TimeSlot class to specify the day of the week for a particular course.
 
-####Class: Enrollment
+###Class: Enrollment
 Represents a student's enrollment in a particular course schedule.
 
-####Class: WaitingList
+###Class: WaitingList
 Represents the waiting list for a particular course. The waiting list class can have attributes such as the course code and a list of students on the waiting list. 
 
-####Class: CourseGuarantor
+###Class: CourseGuarantor
 Represents a guarantor for a particular course. The course guarantor class can have attributes such as name, contact information, and a list of courses for which they are the guarantor. 
 
-####Class: Teacher
+###Class: Teacher
 Represents a teacher for a particular course. The teacher class can have attributes such as name, contact information, and a list of courses they are teaching.
 
-####Class: Management
+###Class: Management
 Represents the management of the system. The management class can have attributes such as the system administrator's credentials.
