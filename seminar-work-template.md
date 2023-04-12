@@ -281,7 +281,7 @@ Represents a schedule of courses offered in a particular semester.
 #### Class: TimeSlot
 Represents a time slot for a particular course. The time slot class can have attributes such as start time, end time, day of the week, and location. 
 
-####Enum: DayOfWeek
+#### Enum: DayOfWeek
 Represents a day of the week. The DayOfWeek enum can have values such as Monday, Tuesday, Wednesday, etc. It may be used in conjunction with the TimeSlot class to specify the day of the week for a particular course.
 
 #### Class: Enrollment
