@@ -98,11 +98,11 @@ Student Views Repeated Enrollment Status for a Course
 Course Guarantor/Teacher Views List of Enrolled Students
 1. Course guarantor/teacher selects a course for a given semester and schedule.
 2. The system displays the list of students enrolled in the selected course.
-
+**
 Course Guarantor/Teacher Sends Email Messages to Students
 1. Course guarantor/teacher selects a course for a given semester and schedule.
 2. The system displays the list of students enrolled in the selected course.
-3. The course guarantor/teacher writes an email message and sends it to the selected students.
+3. The course guarantor/teacher writes an email message and sends it to the selected students.**
 
 Course Guarantor/Teacher Modifies Course Details
 1. Course guarantor/teacher selects a course for a given semester and schedule.
@@ -179,7 +179,9 @@ UC2 <.. UC4 : <<extend>>
 @enduml
 ```
 
-[*Describe the diagram in a short paragraph. Describe each use case from the diagram in the detail from the lecture in a separate subsection.*]
+There are three main actors - the student, course guarantor/teacher and the management. The student uses the system for his study agenda, such as submitting and viewing assignments, enrolling into courses and viewing his enrollment status.
+The teacher uses it mainly to modify/create course details, inform the enrolled students and view the enrolled students' list.
+The management only uses the system for generating statistical reports that may be useful for them.
 
 ###### [*Use case title*]
 
@@ -278,6 +280,173 @@ stop
 @enduml
 ```
 
+
+###### Course Guarantor/Teacher Modifies Course Details
+
+**Actors**
+- Course Guarantor/Teacher
+- System
+
+**Preconditions**
+- The Course Guarantor/Teacher is logged in
+
+**Postconditions**
+- The details of a certain course have been modified
+
+**Flow of events**:
+
+1. Course guarantor/teacher selects a course for a given semester and schedule.
+2. The system displays the details of the selected course.
+3. The course guarantor/teacher modifies the course details, such as prerequisites and allowed repeated enrollments.
+4. The system updates the course details.
+
+
+```plantuml
+@startuml
+|Course Guarantor/Teacher|
+start
+
+:Views the courses where he is the guarantor/teacher;
+|Course Guarantor/Teacher|
+:Chooses the course he wishes to modify;
+|System|
+:Displays the details of the selected course;
+|Course Guarantor/Teacher|
+:Modifies all the details he wans to;
+if(Does he confirm the changes?) then (confirms)
+    |System|
+    :modifies and saves the course details;
+    stop
+else (cancels)
+|System|
+:Cancels the changes and returns to the courses overview page;
+stop
+@enduml
+```
+
+###### Sending Email Messages to Students
+
+**Actors**:
+- Course Guarantor/Teacher
+- System
+
+**Preconditions**:
+- The Course Guarantor/Teacher is logged into the system.
+
+**Postconditions**:
+- Required e-mails are sent to students. 
+
+**Flow of Events**:
+
+1. The course guarantor/teacher views all courses, or all his courses.
+2. The course guarantor/teacher selects one of the courses.
+3. The course guarantor/teacher selects a course for a given semester and schedule.
+5. The course guarantor/teacher views the list of students enrolled in the selected course.
+6. The course guarantor/teacher selects set of students from the list.
+7. The course guarantor/teacher writes an email message and sends it to the selected students.
+
+
+```plantuml
+@startuml
+|The Course Guarantor/Teacher|
+start
+
+:View courses;
+|System|
+:Display courses;
+|The Course Guarantor/Teacher|
+:Choose course;
+|System|
+:Display semseters and schedules;
+|The Course Guarantor/Teacher|
+:Choose schedule;
+|System|
+if(Does The Course Guarantor/Teacher has access to this course) then (no)
+    |System|
+    :Display error message;
+    |The Course Guarantor/Teacher|
+    :View error message;
+    stop
+else (yes)
+endif
+|System|
+:Display enrolled students;
+|The Course Guarantor/Teacher|
+:Choose set of students;
+|System|
+:Copy email addersses of selected students;
+|The Course Guarantor/Teacher|
+:Write email;
+|The Course Guarantor/Teacher|
+:Send email;
+stop
+
+@enduml
+```
+
+###### Student Removes Enrollment
+
+**Actors**:
+- Student
+- System
+
+**Preconditions**:
+- The student is logged into the system.
+- The enrollment period is open.
+
+**Postconditions**:
+- Student discarded his enrollment into some course or the student is informed why the action failed..
+- A course lost a participant, its queue in waiting list has shifted and the peeked student filled the vacancy place.
+
+**Flow of Events**:
+
+1. Student selects a course from his enrolled courses list.
+2. The system displays the details of the selected course.
+3. The student can choose to remove their enrollment in the course.
+4. The system updates the enrollment status of the student.
+5. The system updates the waiting list.
+
+```plantuml
+@startuml
+|Student|
+start
+
+:View his enrolled courses list;
+|System|
+:Display students enrolled courses list;
+|Student|
+:Choose course to discard enrollment;
+|System|
+if(is student enrolled in the course) then (yes)
+    if (is course full?) then (yes)
+        if (is Waiting list empty?) then (no)
+            |System|
+            :peek a student;
+            |System|
+            :enroll the peeked student to the course;
+            |System|
+            :send an inform email to the peeked student;
+        else (yes)
+        endif
+    else (no)
+    endif
+else (no)
+|System|
+:Display error message;
+|Student|
+:View error message;
+stop
+endif
+
+|System|
+:Display enrollment status;
+|Student|
+:View enrollment status;
+|Student|
+stop
+@enduml
+```
+
 ## Information model
 
 
@@ -292,6 +461,7 @@ class Student {
 class Course {
     -courseCode: string
     -name: string
+    -description: string
     -allowRepeatedEnrollment: bool
 }
 
@@ -350,7 +520,7 @@ Student "0...n" -- "0...n" WaitingList : is in >
 Course "1" -- "0...n" Schedule : is offered in >
 Course "0...n" -- "0...n" Course : prerequisity >
 CourseGuarantor "1" -- "0...n" Course : guarantees >
-Teacher "1...n" -- "0...n" Course : teaches >
+Teacher "1...n" -- "0...n" Schedule : teaches >
 Management "1...n" -- "0...n" Course : manages >
 Schedule "1" -- "0...n" Enrollment : includes >
 Course "1" -- "1" WaitingList : has >
