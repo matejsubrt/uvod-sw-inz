@@ -138,6 +138,8 @@ package "Student Use Cases" {
   usecase "Views Available Courses and Prerequisites" as UC3
   usecase "Views Enrollment Status" as UC4
   usecase "Views Repeated Enrollment Status for a Course" as UC5
+  usecase "Submit assignment" as SUC1
+  usecase "View reviewed assignment" as SUC2
 }
 
 package "Course Guarantor/Teacher Use Cases" {
@@ -157,6 +159,8 @@ S --> UC2
 S --> UC3
 S --> UC4
 S --> UC5
+S --> SUC1
+S --> SUC2
 
 T --> UC6
 T --> UC7
@@ -183,6 +187,39 @@ UC2 <.. UC4 : <<extend>>
 
 [*Add an activity diagram for one use case per a team member*]
 
+###### Review and grade student assignments and exams
+
+Actors:
+- Course Guarantor/Teacher
+- System
+
+Preconditions:
+- The student has submitted assignments and/or exams for the course.
+
+Flow of Events:
+
+1. The course guarantor/teacher receives student assignments and exams.
+2. The course guarantor/teacher reviews student assignments and exams.
+3. The course guarantor/teacher provides feedback and grades.
+4. The system records the feedback and grades.
+5. The system notifies students of their grades and feedback.
+
+```plantuml
+@startuml
+|Course Guarantor/Teacher|
+start
+
+:Receive student assignments and exams;
+|Course Guarantor/Teacher|
+:Review student assignments and exams;
+:Provide feedback and grades;
+|System|
+:Record feedback and grades;
+:Notify students of their grades and feedback;
+stop
+@enduml
+```
+
 ###### Course enrollment
 
 
@@ -201,16 +238,11 @@ Postconditions:
 Flow of Events:
 
 1. The student views available courses and their prerequisites.
-   1.1 The system displays courses and prerequisites.
-2. The student checks if the course requirements are met.
-   2.1 The system checks if the requirements are met.
-3. If the requirements are met, the student enrolls in the course for a given semester and schedule.
-   3.1 The system checks if the schedule ticket is full.
-      3.1.1 If the schedule ticket is full, the student adds themselves to the waiting list.
-      3.1.2 If the schedule ticket is not full, the system confirms enrollment.
-4. If the requirements are not met, the system informs the student that they cannot enroll in the course.
+2. The student tries to enroll in course.
+3. The system checks if the requirements are met.
+4. If the requirements are met, the student enrolls in the course for a given semester and schedule.
+   If the requirements are not met, the system informs the student that they cannot enroll in the course.
 5. The student views their enrollment status.
-   5. system displays the enrollment status.
 
 ```plantuml
 @startuml
