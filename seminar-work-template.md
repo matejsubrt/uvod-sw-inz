@@ -248,20 +248,112 @@ stop
 
 ## Information model
 
-[*Express the information model of the domain as a UML class diagram in PlantUML. Do not use class methods in the diagram, only classes, class attributes and associations connecting classes.*]
 
 ```plantuml
 @startuml
-class Car
+class Student {
+    -id: int
+    -name: string
+    -email: string
+}
 
-Driver - Car : drives >
-Car *- Wheel : have 4 >
-Car -- Person : < owns
+class Course {
+    -courseCode: string
+    -name: string
+    -allowRepeatedEnrollment: bool
+}
+
+class Schedule {
+    -id: int
+    -semester: string
+    -credits: int
+}
+
+class TimeSlot {
+  - startTime: DateTime
+  - endTime: DateTime
+  - dayOfWeek: DayOfWeek
+}
+
+enum DayOfWeek {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
+
+class Enrollment {
+    -id: int
+    -schedule: Schedule
+    -status: string
+}
+
+class WaitingList {
+    -id: int
+    -students: Queue<Student>
+}
+
+class CourseGuarantor {
+    -id: int
+    -name: string
+    -email: string
+}
+
+class Teacher {
+    -id: int
+    -name: string
+    -email: string
+}
+
+class Management {
+    -id: int
+    -name: string
+}
+
+Student "1" -- "0...n" Enrollment : enrolls in >
+Student "0...n" -- "0...n" WaitingList : is in >
+Course "1" -- "0...n" Schedule : is offered in >
+Course "0...n" -- "0...n" Course : prerequisity >
+CourseGuarantor "1" -- "0...n" Course : guarantees >
+Teacher "1...n" -- "0...n" Course : teaches >
+Management "1...n" -- "0...n" Course : manages >
+Schedule "1" -- "0...n" Enrollment : includes >
+Course "1" -- "1" WaitingList : has >
+Schedule "1...n" -- "1...n" TimeSlot : has >
 @enduml
+
 ```
 
-[*Document each class with a short description in a separate subsection*]
 
-### [*Class name*]
+#### Class: Student
+Represents a student in the system. The student class can have attributes such as name, ID, contact information, and enrollment status.
 
-[*Class description*]
+#### Class: Course
+Represents a course offered in the system. Its number of credits can vary during different semesters.
+
+#### Class: Schedule
+Represents a schedule of courses offered in a particular semester. 
+
+#### Class: TimeSlot
+Represents a time slot for a particular course. The time slot class can have attributes such as start time, end time, day of the week, and location. 
+
+#### Enum: DayOfWeek
+Represents a day of the week. The DayOfWeek enum can have values such as Monday, Tuesday, Wednesday, etc. It may be used in conjunction with the TimeSlot class to specify the day of the week for a particular course.
+
+#### Class: Enrollment
+Represents a student's enrollment in a particular course schedule.
+
+#### Class: WaitingList
+Represents the waiting list for a particular course. The waiting list class can have attributes such as the course code and a list of students on the waiting list. 
+
+#### Class: CourseGuarantor
+Represents a guarantor for a particular course. The course guarantor class can have attributes such as name, contact information, and a list of courses for which they are the guarantor. 
+
+#### Class: Teacher
+Represents a teacher for a particular course. The teacher class can have attributes such as name, contact information, and a list of courses they are teaching.
+
+#### Class: Management
+Represents the management of the system. The management class can have attributes such as the system administrator's credentials.
