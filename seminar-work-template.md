@@ -98,11 +98,11 @@ Student Views Repeated Enrollment Status for a Course
 Course Guarantor/Teacher Views List of Enrolled Students
 1. Course guarantor/teacher selects a course for a given semester and schedule.
 2. The system displays the list of students enrolled in the selected course.
-
+**
 Course Guarantor/Teacher Sends Email Messages to Students
 1. Course guarantor/teacher selects a course for a given semester and schedule.
 2. The system displays the list of students enrolled in the selected course.
-3. The course guarantor/teacher writes an email message and sends it to the selected students.
+3. The course guarantor/teacher writes an email message and sends it to the selected students.**
 
 Course Guarantor/Teacher Modifies Course Details
 1. Course guarantor/teacher selects a course for a given semester and schedule.
@@ -138,6 +138,8 @@ package "Student Use Cases" {
   usecase "Views Available Courses and Prerequisites" as UC3
   usecase "Views Enrollment Status" as UC4
   usecase "Views Repeated Enrollment Status for a Course" as UC5
+  usecase "Submit assignment" as SUC1
+  usecase "View reviewed assignment" as SUC2
 }
 
 package "Course Guarantor/Teacher Use Cases" {
@@ -157,6 +159,8 @@ S --> UC2
 S --> UC3
 S --> UC4
 S --> UC5
+S --> SUC1
+S --> SUC2
 
 T --> UC6
 T --> UC7
@@ -183,6 +187,148 @@ UC2 <.. UC4 : <<extend>>
 
 [*Add an activity diagram for one use case per a team member*]
 
+###### Review and grade student assignments and exams
+
+Actors:
+- Course Guarantor/Teacher
+- System
+
+Preconditions:
+- The student has submitted assignments and/or exams for the course.
+
+Flow of Events:
+
+1. The course guarantor/teacher receives student assignments and exams.
+2. The course guarantor/teacher reviews student assignments and exams.
+3. The course guarantor/teacher provides feedback and grades.
+4. The system records the feedback and grades.
+5. The system notifies students of their grades and feedback.
+
+```plantuml
+@startuml
+|Course Guarantor/Teacher|
+start
+
+:Receive student assignments and exams;
+|Course Guarantor/Teacher|
+:Review student assignments and exams;
+:Provide feedback and grades;
+|System|
+:Record feedback and grades;
+:Notify students of their grades and feedback;
+stop
+@enduml
+```
+
+###### Course enrollment
+
+
+Actors:
+- Student
+- System
+
+Preconditions:
+- The student is logged into the system.
+- The enrollment period is open.
+
+Postconditions:
+- The student is enrolled in the course if the requirements are met, and the schedule ticket is not full.
+- The student is added to the waiting list if the schedule ticket is full.
+
+Flow of Events:
+
+1. The student views available courses and their prerequisites.
+2. The student tries to enroll in course.
+3. The system checks if the requirements are met.
+4. If the requirements are met, the student enrolls in the course for a given semester and schedule.
+   If the requirements are not met, the system informs the student that they cannot enroll in the course.
+5. The student views their enrollment status.
+
+```plantuml
+@startuml
+|Student|
+start
+
+:View available courses and prerequisites;
+|System|
+:Display courses and prerequisites;
+|Student|
+:Choose course to enroll in;
+|System|
+if (Requirements met?) then (yes)
+  |System|
+  :Enroll in course for a given semester and schedule;
+  |System|
+  if (Schedule ticket full?) then (yes)
+    |System|
+    :Add to waiting list;
+  else (no)
+    :Enroll;
+  endif
+else (no)
+  :Cannot enroll in course;
+endif
+
+|System|
+:Display enrollment status;
+|Student|
+:View enrollment status;
+|Student|
+stop
+@enduml
+```
+
+###### Sending Email Messages to Students
+
+
+
+**Actors**:
+- Course Guarantor/Teacher
+- System
+
+**Preconditions**:
+- The Course Guarantor/Teacher is logged into the system.
+
+**Postconditions**:
+- Required e-mails are sent to students. 
+
+1. The course guarantor/teacher views all courses, or all his courses.
+2. The course guarantor/teacher selects one of the courses.
+4. The course guarantor/teacher selects a course for a given semester and schedule.
+5. The course guarantor/teacher views the list of students enrolled in the selected course.
+6. The course guarantor/teacher selects set of students from the list.
+7. The course guarantor/teacher writes an email message and sends it to the selected students.
+
+
+```plantuml
+@startuml
+|The Course Guarantor/Teacher|
+start
+
+:View courses;
+|System|
+:Display courses;
+|The Course Guarantor/Teacher|
+:Choose course;
+|System|
+:Display semseters and schedules;
+|The Course Guarantor/Teacher|
+:Choose schedule;
+|System|
+:Display enrolled students;
+|The Course Guarantor/Teacher|
+:Choose set of students;
+|System|
+:Copy email addersses of selected students;
+|The Course Guarantor/Teacher|
+:Write email;
+|The Course Guarantor/Teacher|
+:Send email;
+stop
+
+@enduml
+```
+
 ## Information model
 
 
@@ -197,6 +343,7 @@ class Student {
 class Course {
     -courseCode: string
     -name: string
+    -description: string
     -allowRepeatedEnrollment: bool
 }
 
@@ -255,7 +402,7 @@ Student "0...n" -- "0...n" WaitingList : is in >
 Course "1" -- "0...n" Schedule : is offered in >
 Course "0...n" -- "0...n" Course : prerequisity >
 CourseGuarantor "1" -- "0...n" Course : guarantees >
-Teacher "1...n" -- "0...n" Course : teaches >
+Teacher "1...n" -- "0...n" Schedule : teaches >
 Management "1...n" -- "0...n" Course : manages >
 Schedule "1" -- "0...n" Enrollment : includes >
 Course "1" -- "1" WaitingList : has >
