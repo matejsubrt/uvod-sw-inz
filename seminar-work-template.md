@@ -292,9 +292,11 @@ stop
 **Postconditions**:
 - Required e-mails are sent to students. 
 
+**Flow of Events**:
+
 1. The course guarantor/teacher views all courses, or all his courses.
 2. The course guarantor/teacher selects one of the courses.
-4. The course guarantor/teacher selects a course for a given semester and schedule.
+3. The course guarantor/teacher selects a course for a given semester and schedule.
 5. The course guarantor/teacher views the list of students enrolled in the selected course.
 6. The course guarantor/teacher selects set of students from the list.
 7. The course guarantor/teacher writes an email message and sends it to the selected students.
@@ -326,6 +328,57 @@ start
 :Send email;
 stop
 
+@enduml
+```
+
+###### Student Removes Enrollment
+
+**Actors**:
+- Student
+- System
+
+**Preconditions**:
+- The student is logged into the system.
+- The enrollment period is open.
+
+**Postconditions**:
+- Student discarded his enrollment into some course.
+- A course lost a participant, its queue in waiting list has shifted and the peeked student filled the vacancy place.
+
+**Flow of Events**:
+
+1. Student selects a course from his enrolled courses list.
+2. The system displays the details of the selected course.
+3. The student can choose to remove their enrollment in the course.
+4. The system updates the enrollment status of the student.
+5. The system updates the waiting list.
+
+```plantuml
+@startuml
+|Student|
+start
+
+:View his enrolled courses list;
+|System|
+:Display students enrolled courses list;
+|Student|
+:Choose course to discard enrollment;
+|System|
+if (is Waiting list empty?) then (no)
+  |System|
+  :peek a student;
+  |System|
+  :enroll the peeked student to the course;
+  |System|
+  :send an inform email to the peeked student;
+endif
+
+|System|
+:Display enrollment status;
+|Student|
+:View enrollment status;
+|Student|
+stop
 @enduml
 ```
 
