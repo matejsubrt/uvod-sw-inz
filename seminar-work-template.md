@@ -342,7 +342,7 @@ stop
 - The enrollment period is open.
 
 **Postconditions**:
-- Student discarded his enrollment into some course.
+- Student discarded his enrollment into some course or the student is informed why the action failed..
 - A course lost a participant, its queue in waiting list has shifted and the peeked student filled the vacancy place.
 
 **Flow of Events**:
@@ -364,13 +364,25 @@ start
 |Student|
 :Choose course to discard enrollment;
 |System|
-if (is Waiting list empty?) then (no)
-  |System|
-  :peek a student;
-  |System|
-  :enroll the peeked student to the course;
-  |System|
-  :send an inform email to the peeked student;
+if(is student enrolled in the course) then (yes)
+    if (is course full?) then (yes)
+        if (is Waiting list empty?) then (no)
+            |System|
+            :peek a student;
+            |System|
+            :enroll the peeked student to the course;
+            |System|
+            :send an inform email to the peeked student;
+        else (yes)
+        endif
+    else (no)
+    endif
+else (no)
+|System|
+:Display error message;
+|Student|
+:View error message;
+stop
 endif
 
 |System|
