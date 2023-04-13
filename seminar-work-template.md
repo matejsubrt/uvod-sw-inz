@@ -183,11 +183,6 @@ There are three main actors - the student, course guarantor/teacher and the mana
 The teacher uses it mainly to modify/create course details, inform the enrolled students and view the enrolled students' list.
 The management only uses the system for generating statistical reports that may be useful for them.
 
-###### [*Use case title*]
-
-[*Use case description in the structure from the lecture.*]
-
-[*Add an activity diagram for one use case per a team member*]
 
 ###### Review and grade student assignments and exams
 
