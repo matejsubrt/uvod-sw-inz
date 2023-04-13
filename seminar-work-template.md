@@ -179,7 +179,9 @@ UC2 <.. UC4 : <<extend>>
 @enduml
 ```
 
-[*Describe the diagram in a short paragraph. Describe each use case from the diagram in the detail from the lecture in a separate subsection.*]
+There are three main actors - the student, course guarantor/teacher and the management. The student uses the system for his study agenda, such as submitting and viewing assignments, enrolling into courses and viewing his enrollment status.
+The teacher uses it mainly to modify/create course details, inform the enrolled students and view the enrolled students' list.
+The management only uses the system for generating statistical reports that may be useful for them.
 
 ###### [*Use case title*]
 
@@ -278,9 +280,50 @@ stop
 @enduml
 ```
 
+###### Course Guarantor/Teacher Modifies Course Details
+
+**Actors**
+- Course Guarantor/Teacher
+- System
+
+**Preconditions**
+- The Course Guarantor/Teacher is logged in
+
+**Postconditions**
+- The details of a certain course have been modified
+
+**Flow of events**:
+
+1. Course guarantor/teacher selects a course for a given semester and schedule.
+2. The system displays the details of the selected course.
+3. The course guarantor/teacher modifies the course details, such as prerequisites and allowed repeated enrollments.
+4. The system updates the course details.
+
+
+```plantuml
+@startuml
+|Course Guarantor/Teacher|
+start
+
+:Views the courses where he is the guarantor/teacher;
+|Course Guarantor/Teacher|
+:Chooses the course he wishes to modify;
+|System|
+:Displays the details of the selected course;
+|Course Guarantor/Teacher|
+:Modifies all the details he wans to;
+if(Does he confirm the changes?) then (confirms)
+    |System|
+    :modifies and saves the course details;
+    stop
+else (cancels)
+|System|
+:Cancels the changes and returns to the courses overview page;
+stop
+@enduml
+```
+
 ###### Sending Email Messages to Students
-
-
 
 **Actors**:
 - Course Guarantor/Teacher
