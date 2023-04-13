@@ -317,6 +317,15 @@ start
 |The Course Guarantor/Teacher|
 :Choose schedule;
 |System|
+if(Does The Course Guarantor/Teacher has access to this course) then (no)
+    |System|
+    :Display error message;
+    |The Course Guarantor/Teacher|
+    :View error message;
+    stop
+else (yes)
+endif
+|System|
 :Display enrolled students;
 |The Course Guarantor/Teacher|
 :Choose set of students;
